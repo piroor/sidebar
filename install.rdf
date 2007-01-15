@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+
+		<em:id>{381DC44B-FAD2-4786-B7E1-02C4C2898A2C}</em:id>
+
+		<em:version>2.3.2005042201</em:version>
+
+
+		<em:targetApplication>
+			<Description><!-- Netscape Browser 8 -->
+				<em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
+				<em:minVersion>8.0</em:minVersion>
+				<em:maxVersion>8.1</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+
+
+		<em:name>Sidebar Window</em:name>
+		<em:description>Provides undockable Sidebar.</em:description>
+		<em:creator>SHIMODA Hiroshi</em:creator>
+		<em:homepageURL>http://piro.sakura.ne.jp/xul/_sidebar.html.en</em:homepageURL>
+		<em:updateURL>http://piro.sakura.ne.jp/xul/xul.rdf.en</em:updateURL>
+
+
+		<em:optionsURL>chrome://sidebar/content/about.xul</em:optionsURL>
+		<em:aboutURL>chrome://sidebar/content/about.xul</em:aboutURL>
+		<em:iconURL>chrome://sidebar/content/icon.png</em:iconURL>
+
+
+		<em:file>
+			<Description about="urn:mozilla:extension:file:sidebar.jar">
+				<em:package>content/sidebar/</em:package>
+				<em:package>content/sidebarWindowBrowser/</em:package>
+				<em:locale>locale/en-US/sidebar/</em:locale>
+				<em:locale>locale/ja-JP/sidebar/</em:locale>
+			</Description>
+		</em:file>
+	</Description>
+</RDF>

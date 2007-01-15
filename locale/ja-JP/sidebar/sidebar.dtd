@@ -1,0 +1,63 @@
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is the Sidebar Window.
+   -
+   - The Initial Developer of the Original Code is SHIMODA Hiroshi.
+   - Portions created by the Initial Developer are Copyright (C) 2002-2004
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s): SHIMODA Hiroshi <piro@p.club.ne.jp>
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - either the GNU General Public License Version 2 or later (the "GPL"), or
+   - the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+   - in which case the provisions of the GPL or the LGPL are applicable instead
+   - of those above. If you wish to allow use of your version of this file only
+   - under the terms of either the GPL or the LGPL, and not to allow others to
+   - use your version of this file under the terms of the MPL, indicate your
+   - decision by deleting the provisions above and replace them with the notice
+   - and other provisions required by the LGPL or the GPL. If you do not delete
+   - the provisions above, a recipient may use your version of this file under
+   - the terms of any one of the MPL, the GPL or the LGPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!ENTITY sidebar.panels.titlemodifiermenuseparator " - ">
+
+<!ENTITY sidebar.undock.label            "Sidebarを分離">
+<!ENTITY sidebar.dock.label              "Sidebarをドッキング">
+<!ENTITY sidebar.alwaysRaised.label      "常に全面に表示">
+<!ENTITY sidebar.hideOnStartup.label "ブラウザ起動時は常にSidebarを閉じておく">
+
+<!ENTITY sidebar.collapse.label      "Sidebarをたたむ">
+<!ENTITY sidebar.expand.label        "Sidebarを元のサイズに戻す">
+<!ENTITY sidebar.loadInBrowser.label "リンクをブラウザで読み込む">
+<!ENTITY sidebar.autoCollapse.label  "Sidebarを自動で隠す">
+<!ENTITY sidebar.autoClose.label     "Sidebarをブラウザと同時に閉じる">
+<!ENTITY sidebar.autoMinimize.label  "Sidebarをブラウザと同時に最小化する">
+<!ENTITY sidebar.showHideButtons.label "スプリッタにボタンを表示">
+<!ENTITY sidebar.remove.label        "このタブを削除">
+<!ENTITY sidebar.rename.label        "このタブの名前を変更">
+
+<!ENTITY sidebar.addPanel.label      "サイドバーに追加">
+<!ENTITY sidebar.loadPanel.label     "サイドバーから読み込む">
+
+<!ENTITY sidebar.about.label       "バージョン情報">
+<!ENTITY sidebar.about.title       "Sidebarウィンドウについて">
+<!ENTITY sidebar.about.name_before "Sidebarウィンドウ Ver.">
+<!ENTITY sidebar.about.name_after  "">
+<!ENTITY sidebar.about.destributed "http://piro.sakura.ne.jp/">
+<!ENTITY sidebar.about.uninstall   "アンインストール">
+
+<!ENTITY sidebar.OK                "OK">

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+	<!-- list all the packages being supplied by this jar -->
+	<RDF:Seq about="urn:mozilla:package:root">
+		<RDF:li resource="urn:mozilla:package:sidebar"/>
+	</RDF:Seq>
+
+	<!-- package information -->
+	<RDF:Description about="urn:mozilla:package:sidebar"
+		chrome:displayName="Sidebar Window"
+		chrome:author="SHIMODA Hiroshi"
+		chrome:name="sidebar"
+		chrome:extension="true"
+		chrome:description="Makes the Sidebar be undockable."/>
+
+</RDF:RDF>

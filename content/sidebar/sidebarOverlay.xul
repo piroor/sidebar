@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is the Sidebar Window.
+   -
+   - The Initial Developer of the Original Code is SHIMODA Hiroshi.
+   - Portions created by the Initial Developer are Copyright (C) 2002-2005
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s): SHIMODA Hiroshi <piro@p.club.ne.jp>
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - either the GNU General Public License Version 2 or later (the "GPL"), or
+   - the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+   - in which case the provisions of the GPL or the LGPL are applicable instead
+   - of those above. If you wish to allow use of your version of this file only
+   - under the terms of either the GPL or the LGPL, and not to allow others to
+   - use your version of this file under the terms of the MPL, indicate your
+   - decision by deleting the provisions above and replace them with the notice
+   - and other provisions required by the LGPL or the GPL. If you do not delete
+   - the provisions above, a recipient may use your version of this file under
+   - the terms of any one of the MPL, the GPL or the LGPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<?xml-stylesheet href="chrome://sidebar/content/buttons.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://sidebar/locale/">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://global/content/nsDragAndDrop.js"/>
+	<script type="application/x-javascript" src="chrome://global/content/nsTransferable.js"/>
+	<script type="application/x-javascript" src="chrome://global/content/nsJSSupportsUtils.js"/>
+	<script type="application/x-javascript" src="chrome://global/content/nsJSComponentManager.js"/>
+
+	<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js"/>
+
+	<script type="application/x-javascript" src="chrome://global/content/XPCNativeWrapper.js"/>
+	<script type="application/x-javascript" src="chrome://sidebar/content/pXPCNativeWrapper.js"/>
+
+	<script type="application/x-javascript" src="chrome://sidebar/content/sidebarOverlay.js"/>
+
+	<popup id="sidebarPopup"
+		onpopupshowing="SidebarWindowInitContextMenu(this, document.popupNode);">
+		<menuitem id="rename-ctx-item" insertbefore="hide-ctx-item"
+			label="&sidebar.rename.label;"
+			oncommand="SidebarWindowManager.renameContextPanel();"/>
+		<menuseparator  insertbefore="hide-ctx-item"/>
+		<menuitem id="remove-ctx-item" insertafter="hide-ctx-item"
+			label="&sidebar.remove.label;"
+			oncommand="SidebarWindowManager.removeContextPanel();"/>
+
+		<menuitem id="dock-ctx-item" insertbefore="customize-ctx-item"
+			hidden="true"
+			label="&sidebar.dock.label;"
+			command="dockSidebar"
+			class="menuitem-iconic"
+			image="chrome://sidebar/content/dock.png"/>
+		<menuitem id="undock-ctx-item" insertbefore="customize-ctx-item"
+			label="&sidebar.undock.label;"
+			command="undockSidebar"
+			class="menuitem-iconic"
+			image="chrome://sidebar/content/undock.png"/>
+		<menuseparator insertbefore="customize-ctx-item"/>
+		<menuitem id="sidebarLoadInBrowser-ctx-item" insertbefore="customize-ctx-item"
+			type="checkbox"
+			checked="true"
+			label="&sidebar.loadInBrowser.label;"
+			oncommand="toggleSidebarLoadInBrowser();"/>
+		<menuseparator insertbefore="customize-ctx-item"/>
+		<menuitem id="autocollapse-ctx-item" insertbefore="customize-ctx-item"
+			type="checkbox"
+			label="&sidebar.autoCollapse.label;"
+			oncommand="toggleSidebarAutoCollapse();"/>
+		<menuitem id="hideonstartup-ctx-item" insertbefore="customize-ctx-item"
+			type="checkbox"
+			label="&sidebar.hideOnStartup.label;"
+			oncommand="toggleSidebarWindowHideOnStartup();"/>
+		<menuitem id="showHideButtons-ctx-item" insertbefore="customize-ctx-item"
+			type="checkbox"
+			checked="true"
+			label="&sidebar.showHideButtons.label;"
+			oncommand="toggleSidebarButtonsShowHide();"/>
+		<menuseparator id="customize-ctx-sep" insertbefore="customize-ctx-item"/>
+
+		<menuitem id="sidebarWindow-about"
+			label="&sidebar.about.label;"
+			oncommand="window.openDialog('chrome://sidebar/content/about.xul', '_blank', 'chrome,dialog,modal,centerscreen');"/>
+	</popup>
+
+	<vbox id="sidebar-box"
+		ondraggesture="if (sidebarWindowGetWindowFromDocument(event.originalTarget.ownerDocument) == Components.lookupMethod(window, 'top').call(window)) nsDragAndDrop.startDrag(event, SidebarWindowManager);"
+		ondragover="if (sidebarWindowGetWindowFromDocument(event.originalTarget.ownerDocument) == Components.lookupMethod(window, 'top').call(window)) nsDragAndDrop.dragOver(event, SidebarWindowManager);"
+		ondragexit="if (sidebarWindowGetWindowFromDocument(event.originalTarget.ownerDocument) == Components.lookupMethod(window, 'top').call(window)) nsDragAndDrop.dragExit(event, SidebarWindowManager);"
+		ondragdrop="if (sidebarWindowGetWindowFromDocument(event.originalTarget.ownerDocument) == Components.lookupMethod(window, 'top').call(window)) nsDragAndDrop.drop(event, SidebarWindowManager);"/>
+
+	<sidebarheader id="sidebar-title-box"
+		onclick="if (event.button == 1 || (event.button == 0 &amp;&amp; (event.ctrlKey || event.metaKey))) { if (isSidebarUndocked()) dockSidebar(); else undockSidebar(); }"
+		ondraggesture="nsDragAndDrop.startDrag(event, SidebarWindowDNDObserver);"
+		context="sidebarPopup">
+
+		<menubarbutton id="sidebar-dock-button"
+			hidden="true"
+			command="dockSidebar"
+			tooltiptext="&sidebar.dock.label;"
+			insertafter="sidebar-panel-picker"/>
+		<menubarbutton id="sidebar-undock-button"
+			command="undockSidebar"
+			tooltiptext="&sidebar.undock.label;"
+			insertafter="sidebar-panel-picker"/>
+
+		<command id="dockSidebar"
+			oncommand="event.preventBubble(); dockSidebar();"/>
+		<command id="undockSidebar"
+			oncommand="event.preventBubble(); undockSidebar();"/>
+	</sidebarheader>
+
+
+	<splitter id="sidebar-splitter">
+		<spacer flex="1" position="1"/>
+		<toolbarbutton position="2"
+			tooltiptext="&sidebar.addPanel.label;"
+			oncommand="SidebarWindowManager.addNewPanel();"
+			class="sidebarSplitterButton addPanel"/>
+		<toolbarbutton position="3"
+			tooltiptext="&sidebar.loadPanel.label;"
+			oncommand="SidebarWindowManager.loadPanel();"
+			class="sidebarSplitterButton loadPanel"/>
+		<spacer flex="15" position="4"/>
+		<!--grippy class="sidebar-splitter-grippy"
+			onclick="SidebarCleanUpExpandCollapse();"/-->
+		<spacer flex="16" position="6"/>
+	</splitter>
+
+</overlay>
